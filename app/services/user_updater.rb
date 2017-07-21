@@ -54,6 +54,11 @@ class UserUpdater
     user_profile.profile_background = attributes.fetch(:profile_background) { user_profile.profile_background }
     user_profile.card_background = attributes.fetch(:card_background) { user_profile.card_background }
 
+    user_identity = user.user_identity
+    user_identity.id_card_front = attributes.fetch(:id_card_front) { user_identity.id_card_front }
+    user_identity.id_card_back = attributes.fetch(:id_card_back) { user_identity.id_card_back }
+    user_identity.id_card_with_person = attributes.fetch(:id_card_with_person) { user_identity.id_card_with_person }
+
     old_user_name = user.name.present? ? user.name : ""
     user.name = attributes.fetch(:name) { user.name }
 
@@ -109,7 +114,10 @@ class UserUpdater
         update_muted_users(attributes[:muted_usernames])
       end
 
-      saved = (!save_options || user.user_option.save) && user_profile.save && user.save
+      saved = (!save_options || user.user_option.save) && 
+        user_profile.save &&
+        user_identity.save &&
+        user.save
 
       if saved
         # log name changes

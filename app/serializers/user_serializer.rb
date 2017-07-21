@@ -108,7 +108,10 @@ class UserSerializer < BasicUserSerializer
                      :muted_usernames,
                      :mailing_list_posts_per_day,
                      :can_change_bio,
-                     :user_api_keys
+                     :user_api_keys,
+                     :id_card_front,
+                     :id_card_back,
+                     :id_card_with_person
 
   untrusted_attributes :bio_raw,
                        :bio_cooked,
@@ -404,6 +407,18 @@ class UserSerializer < BasicUserSerializer
 
   def profile_view_count
     object.user_profile.views
+  end
+
+  def id_card_front
+    object.user_identity.id_card_front
+  end
+
+  def id_card_back
+    object.user_identity.id_card_back
+  end
+
+  def id_card_with_person
+    object.user_identity.id_card_with_person
   end
 
 end

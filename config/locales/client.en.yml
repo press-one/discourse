@@ -660,6 +660,7 @@ en:
       preferences_nav:
         account: "Account"
         profile: "Profile"
+        identity: "Identity"
         emails: "Emails"
         notifications: "Notifications"
         categories: "Categories"
@@ -713,6 +714,21 @@ en:
       change_card_background:
         title: "User Card Background"
         instructions: "Background images will be centered and have a default width of 590px."
+
+      change_identity_card_front:
+        title: "Identity Card Front Side"
+        instructions: "Please make sure that you took the picture in bright environment, the photos you uploaded should not have spots or watermarks and the information is clearly shown on the picture."
+
+      change_identity_card_back:
+        title: "Identity Card Back Side"
+        instructions: "The validity period of the ID card should not be less than 3 months."
+
+      change_identity_card_with_person:
+        title: "Selfie Holding the Identity Card"
+        instructions: "Please make sure you use the same posture as the picture when taking the selfie. Please put your ID document infront of your chest and keep the camera with the same height of your head."
+
+      save_identity:
+        instructions: "After submitted, no changes are allowed."
 
       email:
         title: "Email"

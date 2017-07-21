@@ -567,6 +567,7 @@ zh_CN:
       preferences_nav:
         account: "账号"
         profile: "个人简介"
+        identity: "身份验证"
         emails: "邮件"
         notifications: "通知"
         categories: "分类"
@@ -613,6 +614,17 @@ zh_CN:
       change_card_background:
         title: "用户卡片背景"
         instructions: "显示在用户卡片中，上传的图片将被居中且默认宽度为 590px。"
+      change_identity_card_front:
+        title: "身份证正面"
+        instructions: "请在光线明亮的环境拍摄，确保证件信息完整且清晰，无明显污渍或水印。"
+      change_identity_card_back:
+        title: "身份证背面"
+        instructions: "身份证有效期自提交当日起应不少于 3 个月"
+      change_identity_card_with_person:
+        title: "手持身份证照片"
+        instructions: "请按照图例正确姿势拍摄照片，将证件置于胸前，正视相机，确保相机高度与面部保持平行。"
+      save_identity:
+        instructions: "提交审核通过后不能进行更改"
       email:
         title: "邮箱"
         instructions: "永不公开显示"
