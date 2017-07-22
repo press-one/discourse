@@ -1348,6 +1348,13 @@ user_preferences:
     type: category_list
     default: ''
 
+  facepp_app_secret:
+    default: ''
+  facepp_app_key:
+    default: ''
+  facepp_compare_confidence:
+    default: 60
+
 user_api:
   max_user_api_reqs_per_day:
     default: 2880
