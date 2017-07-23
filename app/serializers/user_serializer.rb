@@ -111,7 +111,9 @@ class UserSerializer < BasicUserSerializer
                      :user_api_keys,
                      :id_card_front,
                      :id_card_back,
-                     :id_card_with_person
+                     :id_card_with_person,
+                     :validating_status,
+                     :validating_error_message
 
   untrusted_attributes :bio_raw,
                        :bio_cooked,
@@ -419,6 +421,14 @@ class UserSerializer < BasicUserSerializer
 
   def id_card_with_person
     object.user_identity.id_card_with_person
+  end
+
+  def validating_status
+    object.user_identity.validating_status
+  end
+
+  def validating_error_message
+    object.user_identity.error_message
   end
 
 end

@@ -1,0 +1,14 @@
+{{#if isValidating}}
+  <div class='alert alert-info'>
+    {{i18n 'user.validating_identity.validating'}}
+  </div>
+{{else if isValidateFail}}
+  <div class='alert alert-warning'>
+    {{i18n 'user.validating_identity.validate_fail'}}
+    ({{error_message}})
+  </div>
+{{else if isValidateSuccess}}
+  <div class='alert alert-success'>
+    {{i18n 'user.validating_identity.validate_success'}}
+  </div>
+{{/if}}

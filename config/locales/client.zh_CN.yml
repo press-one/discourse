@@ -625,6 +625,10 @@ zh_CN:
         instructions: "请按照图例正确姿势拍摄照片，将证件置于胸前，正视相机，确保相机高度与面部保持平行。"
       save_identity:
         instructions: "提交审核通过后不能进行更改"
+      validating_identity:
+        validating: "我们正在审核您的身份验证信息，请耐心等候"
+        validate_fail: "您的身份验证信息审核失败，请重新提交"
+        validate_success: "恭喜，已经成功验证您的身份"
       email:
         title: "邮箱"
         instructions: "永不公开显示"

@@ -730,6 +730,11 @@ en:
       save_identity:
         instructions: "After submitted, no changes are allowed."
 
+      validating_identity:
+        validating: "We're verifying your identity, please wait"
+        validate_fail: "Your identity info can't be verified, please resubmit all infos"
+        validate_success: "Congratulations! Your identity have been verified"
+
       email:
         title: "Email"
         instructions: "never shown to the public"
