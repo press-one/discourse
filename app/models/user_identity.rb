@@ -9,7 +9,7 @@ class UserIdentity < ActiveRecord::Base
   validates :id_card_back, upload_url: true, if: :id_card_back_changed?
   validates :id_card_with_person, upload_url: true, if: :id_card_with_person_changed?
 
-  before_save :validate_identity
+  before_save :verify_identity_by_id_card
 
   def upload_id_card_front(upload)
     self.id_card_front = upload.url
@@ -26,28 +26,34 @@ class UserIdentity < ActiveRecord::Base
     self.save!
   end
 
-  protected
-
-  def validate_identity
+  def verify_identity_by_id_card
     if id_card_front_changed? || id_card_back_changed? || id_card_with_person_changed?
       unless id_card_front.blank? || id_card_back.blank? || id_card_with_person.blank?
         self.validating_status = 1
         self.error_message = ""
-        if validate_id_card_front &&
-           validate_id_card_back &&
-           validate_id_card_with_person &&
-           validate_id_card_unique
-          self.validating_status = 3
-        else
-          self.validating_status = 2
-        end
+        Jobs.enqueue_in 5.seconds, :verify_id_card, user_id: self.user_id
       else
+        self.validating_status = 2
         self.error_message = "All id card photos should be uploaded"
       end
     end
   end
 
-  def validate_id_card_front
+  def verify_id_card
+    if verify_id_card_front &&
+       verify_id_card_back &&
+       verify_id_card_with_person &&
+       verify_id_card_unique
+      self.validating_status = 3
+    else
+      self.validating_status = 2
+    end
+    save
+  end
+
+  protected
+
+  def verify_id_card_front
     result = FaceppApi::ocr_id_card :front, image_path(id_card_front)
     if result[:error_message].blank?
       self.id_card_number = result[:id_card_number]
@@ -58,7 +64,7 @@ class UserIdentity < ActiveRecord::Base
     self.error_message.blank?
   end
 
-  def validate_id_card_back
+  def verify_id_card_back
     result = FaceppApi::ocr_id_card :back, image_path(id_card_back)
     unless result[:error_message].blank?
       self.error_message = result[:error_message]
@@ -66,7 +72,7 @@ class UserIdentity < ActiveRecord::Base
     self.error_message.blank?
   end
 
-  def validate_id_card_with_person
+  def verify_id_card_with_person
     result = FaceppApi::compare image_path(id_card_front), image_path(id_card_with_person)
     if result[:error_message].blank?
       self.confidence = result[:confidence]
@@ -76,7 +82,7 @@ class UserIdentity < ActiveRecord::Base
     self.error_message.blank?
   end
 
-  def validate_id_card_unique
+  def verify_id_card_unique
     identity = UserIdentity.find_by_id_card_number id_card_number
     if identity && identity != self
       self.error_message = "ID Card Number exist"
