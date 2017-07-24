@@ -100,6 +100,8 @@ export default function() {
       this.route('account');
       this.route('profile');
       this.route('identity');
+      this.route('verify-id-card');
+      this.route('verify-passport');
       this.route('emails');
       this.route('notifications');
       this.route('categories');

@@ -355,6 +355,8 @@ Discourse::Application.routes.draw do
     get "#{root_path}/:username/preferences/account" => "users#preferences", constraints: {username: USERNAME_ROUTE_FORMAT}
     get "#{root_path}/:username/preferences/profile" => "users#preferences", constraints: {username: USERNAME_ROUTE_FORMAT}
     get "#{root_path}/:username/preferences/identity" => "users#preferences", constraints: {username: USERNAME_ROUTE_FORMAT}
+    get "#{root_path}/:username/preferences/verify-id-card" => "users#preferences", constraints: {username: USERNAME_ROUTE_FORMAT}
+    get "#{root_path}/:username/preferences/verify-passport" => "users#preferences", constraints: {username: USERNAME_ROUTE_FORMAT}
     get "#{root_path}/:username/preferences/emails" => "users#preferences", constraints: {username: USERNAME_ROUTE_FORMAT}
     get "#{root_path}/:username/preferences/notifications" => "users#preferences", constraints: {username: USERNAME_ROUTE_FORMAT}
     get "#{root_path}/:username/preferences/categories" => "users#preferences", constraints: {username: USERNAME_ROUTE_FORMAT}

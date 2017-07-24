@@ -58,6 +58,12 @@ class UserUpdater
     user_identity.id_card_front = attributes.fetch(:id_card_front) { user_identity.id_card_front }
     user_identity.id_card_back = attributes.fetch(:id_card_back) { user_identity.id_card_back }
     user_identity.id_card_with_person = attributes.fetch(:id_card_with_person) { user_identity.id_card_with_person }
+    user_identity.passport_cover = attributes.fetch(:passport_cover) { user_identity.passport_cover }
+    user_identity.passport_content = attributes.fetch(:passport_content) { user_identity.passport_content }
+    user_identity.passport_with_person = attributes.fetch(:passport_with_person) { user_identity.passport_with_person }
+    user_identity.passport_country = attributes.fetch(:passport_country) { user_identity.passport_country }
+    user_identity.passport_number = attributes.fetch(:passport_number) { user_identity.passport_number }
+    user_identity.realname = attributes.fetch(:realname) { user_identity.realname }
 
     old_user_name = user.name.present? ? user.name : ""
     user.name = attributes.fetch(:name) { user.name }
@@ -114,7 +120,7 @@ class UserUpdater
         update_muted_users(attributes[:muted_usernames])
       end
 
-      saved = (!save_options || user.user_option.save) && 
+      saved = (!save_options || user.user_option.save) &&
         user_profile.save &&
         user_identity.save &&
         user.save

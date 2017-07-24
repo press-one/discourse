@@ -112,6 +112,12 @@ class UserSerializer < BasicUserSerializer
                      :id_card_front,
                      :id_card_back,
                      :id_card_with_person,
+                     :passport_cover,
+                     :passport_content,
+                     :passport_with_person,
+                     :passport_country,
+                     :passport_number,
+                     :realname,
                      :validating_status,
                      :validating_error_message
 
@@ -421,6 +427,30 @@ class UserSerializer < BasicUserSerializer
 
   def id_card_with_person
     object.user_identity.id_card_with_person
+  end
+
+  def passport_cover
+    object.user_identity.passport_cover
+  end
+
+  def passport_content
+    object.user_identity.passport_content
+  end
+
+  def passport_with_person
+    object.user_identity.passport_with_person
+  end
+
+  def passport_country
+    object.user_identity.passport_country
+  end
+
+  def passport_number
+    object.user_identity.passport_number
+  end
+
+  def realname
+    object.user_identity.realname
   end
 
   def validating_status

@@ -614,6 +614,8 @@ zh_CN:
       change_card_background:
         title: "用户卡片背景"
         instructions: "显示在用户卡片中，上传的图片将被居中且默认宽度为 590px。"
+      change_id_card:
+        instructions: "请确保您使用本人的真实身份进行验证。您所提交的资料将不会提供给未被授权的第三方。"
       change_identity_card_front:
         title: "身份证正面"
         instructions: "请在光线明亮的环境拍摄，确保证件信息完整且清晰，无明显污渍或水印。"
@@ -629,6 +631,23 @@ zh_CN:
         validating: "我们正在审核您的身份验证信息，请耐心等候"
         validate_fail: "您的身份验证信息审核失败，请重新提交"
         validate_success: "恭喜，已经成功验证您的身份"
+      change_passport:
+        instructions: "请确保使用本人的真实护照资料进行验证。您所提交的资料将不会提供给未被授权的第三方。"
+      change_passport_cover:
+        title: "护照封面"
+        instructions: "请确保护照封面清晰可见"
+      change_passport_content:
+        title: "护照个人信息页"
+        instructions: "请确保护照信息完整且清晰，无明显污渍或水印"
+      change_passport_with_person:
+        title: "手持护照照片"
+        instructions: "请按照图例正确姿势拍摄照片，保证照片信息清晰可见"
+      change_passport_country:
+        title: "国家代码（三位）"
+      change_passport_number:
+        title: "护照号码"
+      change_realname:
+        title: "护照姓名"
       email:
         title: "邮箱"
         instructions: "永不公开显示"

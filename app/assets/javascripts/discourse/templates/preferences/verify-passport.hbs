@@ -1,0 +1,65 @@
+<div>
+  <p>{{i18n 'user.change_passport.instructions'}}</p>
+</div>
+
+{{user-identity-verify status=model.validating_status error_message=model.validating_error_message}}
+
+<div class="control-group pref-passport-cover">
+  <label class="control-label">{{i18n 'user.change_passport_cover.title'}}</label>
+  <div class="controls">
+    {{image-uploader imageUrl=model.passport_cover type="passport_cover"}}
+  </div>
+  <div class='instructions'>
+    {{i18n 'user.change_passport_cover.instructions'}}
+  </div>
+</div>
+
+<div class="control-group pref-passport-content">
+  <label class="control-label">{{i18n 'user.change_passport_content.title'}}</label>
+  <div class="controls">
+    {{image-uploader imageUrl=model.passport_content type="passport_content"}}
+  </div>
+  <div class='instructions'>
+    {{i18n 'user.change_passport_content.instructions'}}
+  </div>
+</div>
+
+<div class="control-group pref-passport-with-person">
+  <label class="control-label">{{i18n 'user.change_passport_with_person.title'}}</label>
+  <div class="controls">
+    {{image-uploader imageUrl=model.passport_with_person type="passport_with_person"}}
+  </div>
+  <div class='instructions'>
+    {{i18n 'user.change_passport_with_person.instructions'}}
+  </div>
+</div>
+
+<div class="control-group pref-passport-country">
+  <label class="control-label">{{i18n 'user.change_passport_country.title'}}</label>
+  <div class="controls">
+    {{input type="number" value=model.passport_country max=999}}
+  </div>
+</div>
+
+<div class="control-group pref-passport-number">
+  <label class="control-label">{{i18n 'user.change_passport_number.title'}}</label>
+  <div class="controls">
+    {{input type="text" value=model.passport_number}}
+  </div>
+</div>
+
+<div class="control-group pref-realname">
+  <label class="control-label">{{i18n 'user.change_realname.title'}}</label>
+  <div class="controls">
+    {{input type="text" value=model.realname}}
+  </div>
+</div>
+
+<div class="control-group save-button">
+  <div class="controls">
+    {{partial 'user/preferences/save-button'}}
+  </div>
+  <div class='instructions'>
+    {{i18n 'user.save_identity.instructions'}}
+  </div>
+</div>

@@ -2,7 +2,7 @@ module Jobs
 
   class VerifyIdCard < Jobs::Base
 
-    sidekiq_options queue: "critical"
+    sidekiq_options queue: "default"
 
     def execute(args)
       user = User.find_by_id args[:user_id]

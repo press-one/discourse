@@ -9,21 +9,51 @@ class UserIdentity < ActiveRecord::Base
   validates :id_card_back, upload_url: true, if: :id_card_back_changed?
   validates :id_card_with_person, upload_url: true, if: :id_card_with_person_changed?
 
+  validates :passport_cover, upload_url: true, if: :passport_cover_changed?
+  validates :passport_content, upload_url: true, if: :passport_content_changed?
+  validates :passport_with_person, upload_url: true, if: :passport_with_person_changed?
+  validates :passport_country, inclusion: { in: 1...1000 }, if: :passport_country_changed?
+
+  before_save :is_verified
   before_save :verify_identity_by_id_card
+  before_save :verify_identity_by_passport
 
-  def upload_id_card_front(upload)
-    self.id_card_front = upload.url
-    self.save!
+  def verify_id_card
+    if verify_id_card_front &&
+       verify_id_card_back &&
+       verify_id_card_with_person &&
+       verify_id_card_unique
+      self.validating_status = 3
+    else
+      self.validating_status = 2
+    end
+    save
   end
 
-  def upload_id_card_back(upload)
-    self.id_card_back = upload.url
-    self.save!
+  def is_verified
+    validating_status < 3
   end
 
-  def upload_id_card_with_person(upload)
-    self.id_card_with_person = upload.url
-    self.save!
+  def verify_identity_by_passport
+    passport_attrs = ["passport_cover",
+                      "passport_content",
+                      "passport_with_person",
+                      "passport_country",
+                      "passport_number",
+                      "realname"]
+
+    if (passport_attrs & changed).any?
+      self.validating_status = 1
+
+      unless passport_attrs.map {|attr| send(attr).blank?}.include? true
+        identity = UserIdentity.find_by passport_country: passport_country,
+                                        passport_number: passport_number
+        if identity && identity != self
+          self.error_message = "Passport existed"
+          self.validating_status = 2
+        end
+      end
+    end
   end
 
   def verify_identity_by_id_card
@@ -37,18 +67,6 @@ class UserIdentity < ActiveRecord::Base
         self.error_message = "All id card photos should be uploaded"
       end
     end
-  end
-
-  def verify_id_card
-    if verify_id_card_front &&
-       verify_id_card_back &&
-       verify_id_card_with_person &&
-       verify_id_card_unique
-      self.validating_status = 3
-    else
-      self.validating_status = 2
-    end
-    save
   end
 
   protected
@@ -106,6 +124,11 @@ end
 #  id_card_back         :string(255)
 #  id_card_with_person  :string(255)
 #  id_card_number       :string(32)
+#  passport_cover       :string(255)
+#  passport_content     :string(255)
+#  passport_with_person :string(255)
+#  passport_country     :integer
+#  passport_number      :string(32)
 #  realname             :string(32)
 #  confidence           :integer
 #  error_message        :string(255)

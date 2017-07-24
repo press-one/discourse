@@ -1,0 +1,44 @@
+<div>
+  <p>{{i18n 'user.change_id_card.instructions'}}</p>
+</div>
+
+{{user-identity-verify status=model.validating_status error_message=model.validating_error_message}}
+
+<div class="control-group pref-id-card-front">
+  <label class="control-label">{{i18n 'user.change_identity_card_front.title'}}</label>
+  <div class="controls">
+    {{image-uploader imageUrl=model.id_card_front type="identity_card_front"}}
+  </div>
+  <div class='instructions'>
+    {{i18n 'user.change_identity_card_front.instructions'}}
+  </div>
+</div>
+
+<div class="control-group pref-id-card-back">
+  <label class="control-label">{{i18n 'user.change_identity_card_back.title'}}</label>
+  <div class="controls">
+    {{image-uploader imageUrl=model.id_card_back type="identity_card_back"}}
+  </div>
+  <div class='instructions'>
+    {{i18n 'user.change_identity_card_back.instructions'}}
+  </div>
+</div>
+
+<div class="control-group pref-id-card-with-person">
+  <label class="control-label">{{i18n 'user.change_identity_card_with_person.title'}}</label>
+  <div class="controls">
+    {{image-uploader imageUrl=model.id_card_with_person type="identity_card_with_person"}}
+  </div>
+  <div class='instructions'>
+    {{i18n 'user.change_identity_card_with_person.instructions'}}
+  </div>
+</div>
+
+<div class="control-group save-button">
+  <div class="controls">
+    {{partial 'user/preferences/save-button'}}
+  </div>
+  <div class='instructions'>
+    {{i18n 'user.save_identity.instructions'}}
+  </div>
+</div>

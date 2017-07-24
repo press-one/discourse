@@ -715,6 +715,9 @@ en:
         title: "User Card Background"
         instructions: "Background images will be centered and have a default width of 590px."
 
+      change_id_card:
+        instructions: "Please make sure you use your real identity to do this verification. The documents you provide will not be revealed by third party without authorization."
+
       change_identity_card_front:
         title: "Identity Card Front Side"
         instructions: "Please make sure that you took the picture in bright environment, the photos you uploaded should not have spots or watermarks and the information is clearly shown on the picture."
@@ -734,6 +737,30 @@ en:
         validating: "We're verifying your identity, please wait"
         validate_fail: "Your identity info can't be verified, please resubmit all infos"
         validate_success: "Congratulations! Your identity have been verified"
+
+      change_passport:
+        instructions: "Please make sure you use your real passport to do this verification. The documents you provide will not be revealed by third party without authorization."
+
+      change_passport_cover:
+        title: "Passport Cover"
+        instructions: "Make sure your passport cover is clearly visible."
+
+      change_passport_content:
+        title: "Passport personal page"
+        instructions: "Please ensure that the passport information is complete and clear without any noticeable stains or watermarks."
+
+      change_passport_with_person:
+        title: "Selfie holding the passport"
+        instructions: "Please take the picture correctly and make sure the photo is clearly visible."
+
+      change_passport_country:
+        title: "Country Code(3 digit numbers)"
+
+      change_passport_number:
+        title: "Passport number"
+
+      change_realname:
+        title: "Name on passport"
 
       email:
         title: "Email"
