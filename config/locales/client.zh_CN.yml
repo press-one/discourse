@@ -2818,6 +2818,8 @@ zh_CN:
           suspended: '禁止登录'
           blocked: '禁止参与讨论'
           suspect: '怀疑'
+          waiting_verification: '等待身份验证'
+          verification_failed: '身份验证失败'
         approved: "已批准？"
         approved_selected:
           other: "审核通过用户（{{count）"
@@ -2838,6 +2840,8 @@ zh_CN:
           blocked: '被封用户'
           suspended: '被禁用户'
           suspect: '嫌疑用户'
+          waiting_verification: '等待身份验证的用户'
+          verification_failed: '身份验证失败的用户'
         reject_successful:
           other: "成功拒绝 %{count} 个用户。"
         reject_failures:
@@ -2935,6 +2939,12 @@ zh_CN:
         suspended_explanation: "一个被封禁的用户不能登录。"
         block_explanation: "被封禁的用户不能发表主题或者评论。"
         staged_explanation: "暂存用户只能通过邮件回复指定主题。"
+        validating_status:
+          label: "身份验证状态"
+          init: "未提交验证信息"
+          wait: "等待验证"
+          fail: "验证失败"
+          success: "验证成功"
         bounce_score_explanation:
           none: "近期该邮箱没有退信。"
           some: "近期该邮箱有少量退信。"

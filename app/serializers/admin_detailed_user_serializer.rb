@@ -23,7 +23,9 @@ class AdminDetailedUserSerializer < AdminUserSerializer
              :user_fields,
              :bounce_score,
              :reset_bounce_score_after,
-             :can_view_action_logs
+             :can_view_action_logs,
+             :validating_status,
+             :validating_error_message
 
   has_one :approved_by, serializer: BasicUserSerializer, embed: :objects
   has_one :api_key, serializer: ApiKeySerializer, embed: :objects
@@ -95,4 +97,11 @@ class AdminDetailedUserSerializer < AdminUserSerializer
     object.posts.count
   end
 
+  def validating_status
+    object.user_identity.validating_status
+  end
+
+  def validating_error_message
+    object.user_identity.error_message
+  end
 end

@@ -278,6 +278,7 @@
         </div>
       {{/if}}
     </div>
+
     <div class="controls">
       {{#if model.canLockTrustLevel}}
         {{#if model.trust_level_locked}}
@@ -292,7 +293,21 @@
     </div>
   </div>
 
-    <div class="display-row {{if model.isSuspended 'highlight-danger'}}">
+  <div class='display-row'>
+    <div class='field'>{{i18n 'admin.user.validating_status.label'}}</div>
+    <div class="value">
+      {{combo-box content=validatingStatus value=model.validating_status valueAttribute="value"}}
+      {{#if model.dirtyStatus}}
+        <div>
+          {{d-button class="ok no-text" action="saveValidatingStatus" icon="check"}}
+          {{d-button class="cancel no-text" action="restoreValidatingStatus" icon="times"}}
+        </div>
+      {{/if}}
+    </div>
+    <div class='controls'>{{input type=text value=model.validating_error_message}}</div>
+  </div>
+
+  <div class="display-row {{if model.isSuspended 'highlight-danger'}}">
     <div class='field'>{{i18n 'admin.user.suspended'}}</div>
     <div class='value'>{{i18n-yes-no model.isSuspended}}</div>
     <div class='controls'>

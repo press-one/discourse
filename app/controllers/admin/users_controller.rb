@@ -19,6 +19,7 @@ class Admin::UsersController < Admin::AdminController
                                     :unblock,
                                     :trust_level,
                                     :trust_level_lock,
+                                    :validating_status,
                                     :add_group,
                                     :remove_group,
                                     :primary_group,
@@ -154,7 +155,6 @@ class Admin::UsersController < Admin::AdminController
     guardian.ensure_can_change_trust_level!(@user)
     level = params[:level].to_i
 
-
     if !@user.trust_level_locked && [0,1,2].include?(level) && Promotion.send("tl#{level+1}_met?", @user)
       @user.trust_level_locked = true
       @user.save
@@ -195,6 +195,20 @@ class Admin::UsersController < Admin::AdminController
     end
 
     render nothing: true
+  end
+
+  def validating_status
+    guardian.ensure_can_change_trust_level!(@user)
+
+    identity = @user.user_identity
+
+    identity.validating_status = params[:status].to_i
+    identity.error_message = params[:message]
+    identity.save
+
+    render_serialized(@user, AdminUserSerializer)
+  rescue Discourse::InvalidAccess => e
+    render_json_error(e.message)
   end
 
   def approve

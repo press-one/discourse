@@ -14,7 +14,6 @@ class UserIdentity < ActiveRecord::Base
   validates :passport_with_person, upload_url: true, if: :passport_with_person_changed?
   validates :passport_country, inclusion: { in: 1...1000 }, if: :passport_country_changed?
 
-  before_save :is_verified
   before_save :verify_identity_by_id_card
   before_save :verify_identity_by_passport
 
@@ -28,10 +27,6 @@ class UserIdentity < ActiveRecord::Base
       self.validating_status = 2
     end
     save
-  end
-
-  def is_verified
-    validating_status < 3
   end
 
   def verify_identity_by_passport
