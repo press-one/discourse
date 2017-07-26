@@ -117,9 +117,10 @@ class UserSerializer < BasicUserSerializer
                      :passport_with_person,
                      :passport_country,
                      :passport_number,
-                     :realname,
+                     :passport_name,
                      :validating_status,
-                     :validating_error_message
+                     :validating_error_message,
+                     :verified
 
   untrusted_attributes :bio_raw,
                        :bio_cooked,
@@ -449,8 +450,8 @@ class UserSerializer < BasicUserSerializer
     object.user_identity.passport_number
   end
 
-  def realname
-    object.user_identity.realname
+  def passport_name
+    object.user_identity.passport_name
   end
 
   def validating_status

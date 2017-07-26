@@ -304,7 +304,10 @@
         </div>
       {{/if}}
     </div>
-    <div class='controls'>{{input type=text value=model.validating_error_message}}</div>
+    <div class='controls'>
+      {{input type=text value=model.validating_error_message}}
+      {{{i18n 'admin.user.visit_identity' url=identityPath}}}
+    </div>
   </div>
 
   <div class="display-row {{if model.isSuspended 'highlight-danger'}}">

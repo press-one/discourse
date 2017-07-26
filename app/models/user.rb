@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   has_many :email_change_requests, dependent: :destroy
   has_many :directory_items, dependent: :delete_all
   has_many :user_auth_tokens, dependent: :destroy
-  
+
   has_one :user_option, dependent: :destroy
   has_one :user_avatar, dependent: :destroy
   has_one :facebook_user_info, dependent: :destroy
@@ -91,6 +91,7 @@ class User < ActiveRecord::Base
   after_create :create_user_stat
   after_create :create_user_option
   after_create :create_user_profile
+  after_create :create_user_identity
   after_create :ensure_in_trust_level_group
   after_create :set_default_categories_preferences
 
@@ -703,6 +704,18 @@ class User < ActiveRecord::Base
     save
   end
 
+  def verify
+    if active
+      self.verified = true
+      save
+    end
+  end
+
+  def unverify
+    self.verified = false
+    save
+  end
+
   def change_trust_level!(level, opts=nil)
     Promotion.new(self).change_trust_level!(level, opts)
   end
@@ -1106,6 +1119,7 @@ end
 #  password_hash           :string(64)
 #  salt                    :string(32)
 #  active                  :boolean          default(FALSE), not null
+#  verified                :boolean          default(FALSE), not null
 #  username_lower          :string(60)       not null
 #  last_seen_at            :datetime
 #  admin                   :boolean          default(FALSE), not null

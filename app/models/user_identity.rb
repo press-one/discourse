@@ -16,6 +16,7 @@ class UserIdentity < ActiveRecord::Base
 
   before_save :verify_identity_by_id_card
   before_save :verify_identity_by_passport
+  after_save :verify_user
 
   def verify_id_card
     if verify_id_card_front &&
@@ -29,13 +30,21 @@ class UserIdentity < ActiveRecord::Base
     save
   end
 
+  protected
+
+  def verify_user
+    if validating_status_changed?
+      (validating_status >= 3) ? user.verify : user.unverify
+    end
+  end
+
   def verify_identity_by_passport
     passport_attrs = ["passport_cover",
                       "passport_content",
                       "passport_with_person",
                       "passport_country",
                       "passport_number",
-                      "realname"]
+                      "passport_name"]
 
     if (passport_attrs & changed).any?
       self.validating_status = 1
@@ -64,13 +73,11 @@ class UserIdentity < ActiveRecord::Base
     end
   end
 
-  protected
-
   def verify_id_card_front
     result = FaceppApi::ocr_id_card :front, image_path(id_card_front)
     if result[:error_message].blank?
       self.id_card_number = result[:id_card_number]
-      self.realname = result[:name]
+      self.id_card_name = result[:name]
     else
       self.error_message = result[:error_message]
     end
@@ -119,12 +126,13 @@ end
 #  id_card_back         :string(255)
 #  id_card_with_person  :string(255)
 #  id_card_number       :string(32)
+#  id_card_name         :string(32)
 #  passport_cover       :string(255)
 #  passport_content     :string(255)
 #  passport_with_person :string(255)
 #  passport_country     :integer
 #  passport_number      :string(32)
-#  realname             :string(32)
+#  passport_name        :string(32)
 #  confidence           :integer
 #  error_message        :string(255)
 #

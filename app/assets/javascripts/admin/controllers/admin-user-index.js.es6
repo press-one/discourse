@@ -47,6 +47,11 @@ export default Ember.Controller.extend(CanCheckEmails, {
     return userPath(`${username}/preferences`);
   },
 
+  @computed('model.username_lower')
+  identityPath(username) {
+    return userPath(`${username}/preferences/identity`);
+  },
+
   actions: {
 
     impersonate() { return this.get("model").impersonate(); },

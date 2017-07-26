@@ -9,7 +9,7 @@ export default Ember.Controller.extend(PreferencesTabController, {
     'passport_with_person',
     'passport_country',
     'passport_number',
-    'realname'
+    'passport_name'
   ],
 
   actions: {

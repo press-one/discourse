@@ -86,7 +86,7 @@ module PostGuardian
       !parent ||
       !parent.category ||
       Category.post_create_allowed(self).where(:id => parent.category.id).count == 1
-    )
+    ) && @user.verified
   end
 
   # Editing Method

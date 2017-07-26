@@ -222,7 +222,7 @@ const User = RestModel.extend({
       'passport_with_person',
       'passport_country',
       'passport_number',
-      'realname',
+      'passport_name',
       'muted_tags',
       'tracked_tags',
       'watched_tags',

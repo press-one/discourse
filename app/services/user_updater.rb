@@ -63,7 +63,7 @@ class UserUpdater
     user_identity.passport_with_person = attributes.fetch(:passport_with_person) { user_identity.passport_with_person }
     user_identity.passport_country = attributes.fetch(:passport_country) { user_identity.passport_country }
     user_identity.passport_number = attributes.fetch(:passport_number) { user_identity.passport_number }
-    user_identity.realname = attributes.fetch(:realname) { user_identity.realname }
+    user_identity.passport_name = attributes.fetch(:passport_name) { user_identity.passport_name }
 
     old_user_name = user.name.present? ? user.name : ""
     user.name = attributes.fetch(:name) { user.name }
