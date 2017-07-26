@@ -333,3 +333,35 @@ and (max-width : 600px) {
     border: none;
   }
 }
+
+.verification-control .uploaded-image-preview {
+  width: 510px;
+  max-height: 325px;
+  height: 325px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.pref-id-card-front .uploaded-image-preview {
+  background-image: url(/images/id-card-front-default.jpg);
+}
+
+.pref-id-card-back .uploaded-image-preview {
+  background-image: url(/images/id-card-back-default.jpg);
+}
+
+.pref-id-card-with-person .uploaded-image-preview {
+  background-image: url(/images/id-card-with-person-default.jpg);
+}
+
+.pref-passport-cover .uploaded-image-preview {
+  background-image: url(/images/passport-cover-default.jpg);
+}
+
+.pref-passport-content .uploaded-image-preview {
+  background-image: url(/images/passport-content-default.jpg);
+}
+
+.pref-passport-with-person .uploaded-image-preview {
+  background-image: url(/images/passport-with-person-default.jpg);
+}
