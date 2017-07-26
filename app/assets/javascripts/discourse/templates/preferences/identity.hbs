@@ -1,9 +1,15 @@
 {{user-identity-verify status=model.validating_status error_message=model.validating_error_message}}
 
-{{#link-to 'preferences.verify-id-card'}}
-  id_card
-{{/link-to}}
+<div class="control-groups preferences-identity">
+  <span><img src='/images/verification-id-card.png' /></span>
+  {{#link-to 'preferences.verify-id-card'}}
+    {{i18n 'user.verify_id_card_link'}}
+  {{/link-to}}
+</div>
 
-{{#link-to 'preferences.verify-passport'}}
-  passport
-{{/link-to}}
+<div class="control-groups preferences-identity">
+  <span><img src='/images/verification-passport.png' /></span>
+  {{#link-to 'preferences.verify-passport'}}
+    {{i18n 'user.verify_passport_link'}}
+  {{/link-to}}
+</div>

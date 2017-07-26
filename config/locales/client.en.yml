@@ -715,6 +715,8 @@ en:
         title: "User Card Background"
         instructions: "Background images will be centered and have a default width of 590px."
 
+      verify_id_card_link: "Identity verification by Chinese ID Card"
+
       change_id_card:
         instructions: "Please make sure you use your real identity to do this verification. The documents you provide will not be revealed by third party without authorization."
 
@@ -737,6 +739,8 @@ en:
         validating: "We're verifying your identity, please wait"
         validate_fail: "Your identity info can't be verified, please resubmit all infos"
         validate_success: "Congratulations! Your identity have been verified"
+
+      verify_passport_link: "Identity verification by Global Passport"
 
       change_passport:
         instructions: "Please make sure you use your real passport to do this verification. The documents you provide will not be revealed by third party without authorization."

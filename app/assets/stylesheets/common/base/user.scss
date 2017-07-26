@@ -365,3 +365,10 @@ and (max-width : 600px) {
 .pref-passport-with-person .uploaded-image-preview {
   background-image: url(/images/passport-with-person-default.jpg);
 }
+
+.preferences-identity {
+  img {
+    width: 100px;
+    height: 100px;
+  }
+}

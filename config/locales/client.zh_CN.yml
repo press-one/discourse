@@ -614,6 +614,7 @@ zh_CN:
       change_card_background:
         title: "用户卡片背景"
         instructions: "显示在用户卡片中，上传的图片将被居中且默认宽度为 590px。"
+      verify_id_card_link: "中国公民请使用身份证进行身份验证"
       change_id_card:
         instructions: "请确保您使用本人的真实身份进行验证。您所提交的资料将不会提供给未被授权的第三方。"
       change_identity_card_front:
@@ -631,6 +632,7 @@ zh_CN:
         validating: "我们正在审核您的身份验证信息，请耐心等候"
         validate_fail: "您的身份验证信息审核失败，请重新提交"
         validate_success: "恭喜，已经成功验证您的身份"
+      verify_passport_link: "其它国家公民请使用护照进行验证"
       change_passport:
         instructions: "请确保使用本人的真实护照资料进行验证。您所提交的资料将不会提供给未被授权的第三方。"
       change_passport_cover:
