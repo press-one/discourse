@@ -13,6 +13,13 @@ export default Ember.Controller.extend(CanCheckEmails, {
   availableGroups: null,
   userTitleValue: null,
 
+  validatingStatus: [
+    {name: I18n.t('admin.user.validating_status.init'), value: 0},
+    {name: I18n.t('admin.user.validating_status.wait'), value: 1},
+    {name: I18n.t('admin.user.validating_status.fail'), value: 2},
+    {name: I18n.t('admin.user.validating_status.success'), value: 3}
+  ],
+
   showApproval: setting('must_approve_users'),
   showBadges: setting('enable_badges'),
 
@@ -40,6 +47,11 @@ export default Ember.Controller.extend(CanCheckEmails, {
     return userPath(`${username}/preferences`);
   },
 
+  @computed('model.username_lower')
+  identityPath(username) {
+    return userPath(`${username}/preferences/identity`);
+  },
+
   actions: {
 
     impersonate() { return this.get("model").impersonate(); },
@@ -63,6 +75,8 @@ export default Ember.Controller.extend(CanCheckEmails, {
     deleteAllPosts() { return this.get("model").deleteAllPosts(); },
     anonymize() { return this.get('model').anonymize(); },
     destroy() { return this.get('model').destroy(); },
+    saveValidatingStatus() { return this.get("model").saveValidatingStatus(); },
+    restoreValidatingStatus() { return this.get("model").restoreValidatingStatus(); },
 
     toggleUsernameEdit() {
       this.set('userUsernameValue', this.get('model.username'));

@@ -6,6 +6,8 @@
       {{#if siteSettings.must_approve_users}}
         {{nav-item route='adminUsersList.show' routeParam='pending' label='admin.users.nav.pending'}}
       {{/if}}
+      {{nav-item route='adminUsersList.show' routeParam='waiting_verification' label='admin.users.nav.waiting_verification'}}
+      {{nav-item route='adminUsersList.show' routeParam='verificaton_failed' label='admin.users.nav.verification_failed'}}
       {{nav-item route='adminUsersList.show' routeParam='staff' label='admin.users.nav.staff'}}
       {{nav-item route='adminUsersList.show' routeParam='suspended' label='admin.users.nav.suspended'}}
       {{nav-item route='adminUsersList.show' routeParam='blocked' label='admin.users.nav.blocked'}}

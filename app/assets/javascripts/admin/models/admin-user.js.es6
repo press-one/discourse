@@ -231,6 +231,31 @@ const AdminUser = Discourse.User.extend({
     return this.get('trust_level') < 4;
   }.property('trust_level'),
 
+  setOriginalValidatingStatus() {
+    this.set('originalValidatingStatus', String(this.get('validating_status')));
+  },
+
+  dirtyStatus: propertyNotEqual('originalValidatingStatus', 'validating_status'),
+
+  saveValidatingStatus() {
+    return ajax("/admin/users/" + this.id + "/validating_status", {
+      type: 'PUT',
+      data: { status: this.get('validating_status'), message: this.get('validating_error_message') }
+    }).then(function() {
+      window.location.reload();
+    }).catch(function(e) {
+      let error;
+      if (e.responseJSON && e.responseJSON.errors) {
+        error = e.responseJSON.errors[0];
+      }
+      bootbox.alert(error);
+    });
+  },
+
+  restoreValidatingStatus() {
+    this.set('validating_status', this.get('originalValidatingStatus'));
+  },
+
   isSuspended: Em.computed.equal('suspended', true),
   canSuspend: Em.computed.not('staff'),
 
