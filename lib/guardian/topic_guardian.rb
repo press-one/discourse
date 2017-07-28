@@ -9,6 +9,7 @@ module TopicGuardian
   def can_create_topic?(parent)
     is_staff? ||
     (user &&
+      user.verified &&
       user.trust_level >= SiteSetting.min_trust_to_create_topic.to_i &&
       can_create_post?(parent))
   end
@@ -79,6 +80,7 @@ module TopicGuardian
   def can_see_topic?(topic, hide_deleted = true)
     return false unless topic
     return true if is_admin?
+    return false unless @user && @user.verified
     return false if hide_deleted && topic.deleted_at && !can_see_deleted_topics?
 
     if topic.private_message?

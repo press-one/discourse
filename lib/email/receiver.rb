@@ -301,7 +301,8 @@ module Email
               email: email,
               username: UserNameSuggester.suggest(username.presence || email),
               name: display_name.presence || User.suggest_name(email),
-              staged: true
+              staged: true,
+              verified: true
             )
             @staged_users_created += 1
           end

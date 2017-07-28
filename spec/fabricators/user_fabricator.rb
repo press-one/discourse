@@ -9,6 +9,7 @@ Fabricator(:user) do
   trust_level TrustLevel[1]
   ip_address { sequence(:ip_address) { |i| "99.232.23.#{i % 254}" } }
   active true
+  verified true
 end
 
 Fabricator(:coding_horror, from: :user) do
@@ -38,6 +39,7 @@ Fabricator(:inactive_user, from: :user) do
   email 'inactive@idontexist.com'
   password 'qwerqwer123'
   active false
+  verified false
 end
 
 Fabricator(:moderator, from: :user) do

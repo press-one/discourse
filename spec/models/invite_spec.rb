@@ -318,6 +318,7 @@ describe Invite do
       context 'redeem topic invite' do
         it 'adds the user to the topic_users' do
           user = invite.redeem
+          user.verify
           topic.reload
           expect(topic.allowed_users.include?(user)).to eq(true)
           expect(Guardian.new(user).can_see?(topic)).to eq(true)

@@ -40,6 +40,7 @@ class AnonymousShadowCreator
         active: true,
         trust_level: 1,
         trust_level_locked: true,
+        verified: true,
         created_at: 1.day.ago # bypass new user restrictions
       )
 
