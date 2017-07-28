@@ -19,15 +19,17 @@ class UserIdentity < ActiveRecord::Base
   after_save :verify_user
 
   def verify_id_card
-    if verify_id_card_front &&
-       verify_id_card_back &&
-       verify_id_card_with_person &&
-       verify_id_card_unique
-      self.validating_status = 3
-    else
-      self.validating_status = 2
+    DistributedMutex.synchronize("verify_id_card_#{user_id}") do
+      if verify_id_card_front &&
+         verify_id_card_back &&
+         verify_id_card_with_person &&
+         verify_id_card_unique
+        self.validating_status = 3
+      else
+        self.validating_status = 2
+      end
+      save
     end
-    save
   end
 
   protected
