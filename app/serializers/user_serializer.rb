@@ -108,7 +108,19 @@ class UserSerializer < BasicUserSerializer
                      :muted_usernames,
                      :mailing_list_posts_per_day,
                      :can_change_bio,
-                     :user_api_keys
+                     :user_api_keys,
+                     :id_card_front,
+                     :id_card_back,
+                     :id_card_with_person,
+                     :passport_cover,
+                     :passport_content,
+                     :passport_with_person,
+                     :passport_country,
+                     :passport_number,
+                     :passport_name,
+                     :validating_status,
+                     :validating_error_message,
+                     :verified
 
   untrusted_attributes :bio_raw,
                        :bio_cooked,
@@ -399,6 +411,50 @@ class UserSerializer < BasicUserSerializer
 
   def profile_view_count
     object.user_profile.views
+  end
+
+  def id_card_front
+    object.user_identity.id_card_front
+  end
+
+  def id_card_back
+    object.user_identity.id_card_back
+  end
+
+  def id_card_with_person
+    object.user_identity.id_card_with_person
+  end
+
+  def passport_cover
+    object.user_identity.passport_cover
+  end
+
+  def passport_content
+    object.user_identity.passport_content
+  end
+
+  def passport_with_person
+    object.user_identity.passport_with_person
+  end
+
+  def passport_country
+    object.user_identity.passport_country
+  end
+
+  def passport_number
+    object.user_identity.passport_number
+  end
+
+  def passport_name
+    object.user_identity.passport_name
+  end
+
+  def validating_status
+    object.user_identity.validating_status
+  end
+
+  def validating_error_message
+    object.user_identity.error_message
   end
 
 end

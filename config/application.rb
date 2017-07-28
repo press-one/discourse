@@ -121,7 +121,8 @@ module Discourse
         :s3_secret_access_key,
         :twitter_consumer_secret,
         :facebook_app_secret,
-        :github_client_secret
+        :github_client_secret,
+        :facepp_app_secret
     ]
 
     # Enable the asset pipeline

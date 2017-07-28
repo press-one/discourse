@@ -88,6 +88,18 @@ class AdminUserIndexQuery
       .where(where_conds.map { |c| "(#{c})" }.join(" OR "))
   end
 
+  def waiting_verification_users
+    @query.includes(:user_identity)
+      .where("user_identities.validating_status = 1")
+      .references(:user_identities)
+  end
+
+  def verificaton_failed_users
+    @query.includes(:user_identity)
+      .where("user_identities.validating_status = 2")
+      .references(:user_identities)
+  end
+
   def filter_by_query_classification
     case params[:query]
     when 'staff'      then @query.where("admin or moderator")
@@ -97,6 +109,8 @@ class AdminUserIndexQuery
     when 'suspended'  then @query.suspended
     when 'pending'    then @query.not_suspended.where(approved: false)
     when 'suspect'    then suspect_users
+    when 'waiting_verification' then waiting_verification_users
+    when 'verificaton_failed' then verificaton_failed_users
     end
   end
 

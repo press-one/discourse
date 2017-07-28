@@ -3,6 +3,7 @@ require_dependency 'new_post_manager'
 class CurrentUserSerializer < BasicUserSerializer
 
   attributes :name,
+             :username_lower,
              :unread_notifications,
              :unread_private_messages,
              :read_first_notification?,
@@ -35,7 +36,8 @@ class CurrentUserSerializer < BasicUserSerializer
              :automatically_unpin_topics,
              :mailing_list_mode,
              :previous_visit_at,
-             :seen_notification_id
+             :seen_notification_id,
+             :verified
 
   def include_site_flagged_posts_count?
     object.staff?

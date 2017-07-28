@@ -4,7 +4,9 @@ require_dependency 'user'
 describe UserSerializer do
 
   context "with a TL0 user seen as anonymous" do
-    let(:user) { Fabricate.build(:user, trust_level: 0, user_profile: Fabricate.build(:user_profile)) }
+    let(:user) { Fabricate.build(:user, trust_level: 0,
+      user_profile: Fabricate.build(:user_profile),
+      user_identity: Fabricate.build(:user_identity)) }
     let(:serializer) { UserSerializer.new(user, scope: Guardian.new, root: false) }
     let(:json) { serializer.as_json }
 
@@ -24,6 +26,7 @@ describe UserSerializer do
 
       user = Fabricate.build(:user,
                               user_profile: Fabricate.build(:user_profile),
+                              user_identity: Fabricate.build(:user_identity),
                               user_option: UserOption.new(dynamic_favicon: true),
                               user_stat: UserStat.new
                             )

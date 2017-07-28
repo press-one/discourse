@@ -55,6 +55,7 @@ class User < ActiveRecord::Base
   has_one :oauth2_user_info, dependent: :destroy
   has_one :user_stat, dependent: :destroy
   has_one :user_profile, dependent: :destroy, inverse_of: :user
+  has_one :user_identity, dependent: :destroy, inverse_of: :user
   has_one :single_sign_on_record, dependent: :destroy
   belongs_to :approved_by, class_name: 'User'
   belongs_to :primary_group, class_name: 'Group'
@@ -90,6 +91,7 @@ class User < ActiveRecord::Base
   after_create :create_user_stat
   after_create :create_user_option
   after_create :create_user_profile
+  after_create :create_user_identity
   after_create :ensure_in_trust_level_group
   after_create :set_default_categories_preferences
 
@@ -701,6 +703,18 @@ class User < ActiveRecord::Base
     save
   end
 
+  def verify
+    if active
+      self.verified = true
+      save
+    end
+  end
+
+  def unverify
+    self.verified = false
+    save
+  end
+
   def change_trust_level!(level, opts = nil)
     Promotion.new(self).change_trust_level!(level, opts)
   end
@@ -890,6 +904,10 @@ class User < ActiveRecord::Base
 
   def create_user_profile
     UserProfile.create(user_id: id)
+  end
+
+  def create_user_identity
+    UserIdentity.create(user_id: id)
   end
 
   def anonymous?
@@ -1109,6 +1127,7 @@ end
 #  password_hash           :string(64)
 #  salt                    :string(32)
 #  active                  :boolean          default(FALSE), not null
+#  verified                :boolean          default(FALSE), not null
 #  username_lower          :string(60)       not null
 #  last_seen_at            :datetime
 #  admin                   :boolean          default(FALSE), not null

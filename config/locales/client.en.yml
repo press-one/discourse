@@ -668,6 +668,7 @@ en:
       preferences_nav:
         account: "Account"
         profile: "Profile"
+        identity: "Identity"
         emails: "Emails"
         notifications: "Notifications"
         categories: "Categories"
@@ -720,6 +721,57 @@ en:
       change_card_background:
         title: "User Card Background"
         instructions: "Background images will be centered and have a default width of 590px."
+
+      verify_id_card_link: "Identity verification by Chinese ID Card"
+
+      change_id_card:
+        instructions: "Please make sure you use your real identity to do this verification. The documents you provide will not be revealed by third party without authorization."
+
+      change_identity_card_front:
+        title: "Identity Card Front Side"
+        instructions: "Please make sure that you took the picture in bright environment, the photos you uploaded should not have spots or watermarks and the information is clearly shown on the picture."
+
+      change_identity_card_back:
+        title: "Identity Card Back Side"
+        instructions: "The validity period of the ID card should not be less than 3 months."
+
+      change_identity_card_with_person:
+        title: "Selfie Holding the Identity Card"
+        instructions: "Please make sure you use the same posture as the picture when taking the selfie. Please put your ID document infront of your chest and keep the camera with the same height of your head."
+
+      save_identity:
+        instructions: "After submitted, no changes are allowed."
+
+      validating_identity:
+        validating: "We're verifying your identity, please wait"
+        validate_fail: "Your identity info can't be verified, please resubmit all infos"
+        validate_success: "Congratulations! Your identity have been verified"
+
+      verify_passport_link: "Identity verification by Global Passport"
+
+      change_passport:
+        instructions: "Please make sure you use your real passport to do this verification. The documents you provide will not be revealed by third party without authorization."
+
+      change_passport_cover:
+        title: "Passport Cover"
+        instructions: "Make sure your passport cover is clearly visible."
+
+      change_passport_content:
+        title: "Passport personal page"
+        instructions: "Please ensure that the passport information is complete and clear without any noticeable stains or watermarks."
+
+      change_passport_with_person:
+        title: "Selfie holding the passport"
+        instructions: "Please take the picture correctly and make sure the photo is clearly visible."
+
+      change_passport_country:
+        title: "Country Code(3 digit numbers)"
+
+      change_passport_number:
+        title: "Passport number"
+
+      change_passport_name:
+        title: "Name on passport"
 
       email:
         title: "Email"
@@ -966,6 +1018,7 @@ en:
     too_few_topics_and_posts_notice: "Let's <a href='http://blog.discourse.org/2014/08/building-a-discourse-community/'>get this discussion started!</a> There are currently <strong>%{currentTopics} / %{requiredTopics}</strong> topics and <strong>%{currentPosts} / %{requiredPosts}</strong> posts. New visitors need some conversations to read and respond to."
     too_few_topics_notice: "Let's <a href='http://blog.discourse.org/2014/08/building-a-discourse-community/'>get this discussion started!</a> There are currently <strong>%{currentTopics} / %{requiredTopics}</strong> topics. New visitors need some conversations to read and respond to."
     too_few_posts_notice: "Let's <a href='http://blog.discourse.org/2014/08/building-a-discourse-community/'>get this discussion started!</a> There are currently <strong>%{currentPosts} / %{requiredPosts}</strong> posts. New visitors need some conversations to read and respond to."
+    verify_identity_notice: "You should<a href='%{url}'> verify your identity </a>before create and view any topic and post"
     logs_error_rate_notice:
       reached: "<b>%{relativeAge}</b> – <a href='%{url}' target='_blank'>%{rate}</a> reached site setting limit of %{siteSettingRate}."
       exceeded: "<b>%{relativeAge}</b> – <a href='%{url}' target='_blank'>%{rate}</a> exceeds site setting limit of %{siteSettingRate}."
@@ -3196,6 +3249,8 @@ en:
           suspended: 'Suspended'
           blocked: 'Blocked'
           suspect: 'Suspect'
+          waiting_verification: 'Waiting verification'
+          verification_failed: 'Verification failed'
         approved: "Approved?"
         approved_selected:
           one: "approve user"
@@ -3218,6 +3273,8 @@ en:
           blocked: 'Blocked Users'
           suspended: 'Suspended Users'
           suspect: 'Suspect Users'
+          waiting_verification: 'Waiting verification users'
+          verification_failed: 'Verification failed users'
         reject_successful:
           one: "Successfully rejected 1 user."
           other: "Successfully rejected %{count} users."
@@ -3319,7 +3376,13 @@ en:
           label: "Reset"
           title: "Reset bounce score back to 0"
         visit_profile: "Visit <a href='%{url}'>this user's preferences page</a> to edit their profile"
-
+        validating_status:
+          label: "Verify Status"
+          init: "No verification info"
+          wait: "Waiting verification"
+          fail: "Verification fail"
+          success: "Verification success"
+        visit_identity: "Visit <a href='%{url}' target='_blank'>user identity verification page</a>"
         deactivate_explanation: "A deactivated user must re-validate their email."
         suspended_explanation: "A suspended user can't log in."
         block_explanation: "A blocked user can't post or start topics."
